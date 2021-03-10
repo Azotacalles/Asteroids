@@ -7,8 +7,8 @@ namespace Asteroids
         [SerializeField] private float speed;
         [SerializeField] private float acceleration;
         [SerializeField] private float hp;
-        [SerializeField] Rigidbody2D bullet;
-        [SerializeField] Transform barrel;
+        [SerializeField] private Rigidbody2D bullet;
+        [SerializeField] private Transform barrel;
         private Ship ship;
         private InputController inputController;
 

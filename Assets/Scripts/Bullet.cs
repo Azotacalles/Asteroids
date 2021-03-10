@@ -16,7 +16,7 @@ namespace Asteroids
 
         public void CreateObject()
         {
-            var temAmmunition = MonoBehaviour.Instantiate(bullet, barrel.position, barrel.rotation);
+            var temAmmunition = Object.Instantiate(bullet, barrel.position, barrel.rotation);
             temAmmunition.AddForce(barrel.up * force);
         }
 
