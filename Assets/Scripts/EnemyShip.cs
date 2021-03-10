@@ -2,9 +2,11 @@
 
 namespace Asteroids
 {
-    internal sealed class EnemyShip : Enemy
+    internal sealed class EnemyShip : Enemy, IMove
     {
         private float speed = 1;
+
+        public float Speed { get; }
 
         private void Update()
         {
