@@ -4,16 +4,16 @@ namespace Asteroids
 {
     internal sealed class InputController
     {
-        private Rigidbody2D bullet;
+        //private Rigidbody2D bullet;
         private Transform barrel;
         private Ship ship;
         private Camera camera = Camera.main;
         
-        public InputController(Ship ship, Transform barrel, Rigidbody2D bullet)
+        public InputController(Ship ship, Transform barrel)//, Rigidbody2D bullet)
         {
             this.ship = ship;
             this.barrel = barrel;
-            this.bullet = bullet;
+            //this.bullet = bullet;
         }
 
         public void Update()
@@ -21,7 +21,7 @@ namespace Asteroids
             var direction = Input.mousePosition - camera.WorldToScreenPoint(barrel.transform.position);
             ship.Rotation(direction);
 
-            ship.Move(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), Time.deltaTime);
+            ship.Move(Input.GetAxis(InputManager.HORIZONTAL), Input.GetAxis(InputManager.VERTICAL), Time.deltaTime);
 
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
@@ -33,10 +33,10 @@ namespace Asteroids
                 ship.RemoveAcceleration();
             }
 
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown(InputManager.FIRE1))
             {
-                ICreate create = new Bullet(barrel.transform, bullet);
-                create.CreateObject();
+                IBulletFactory factory = new PlayerSimpleBulletFactory();// new Bullet(barrel.transform, bullet);
+                factory.Create(barrel);
             }
         }
     }

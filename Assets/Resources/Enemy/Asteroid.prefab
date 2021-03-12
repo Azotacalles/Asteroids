@@ -95,3 +95,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a5247f678fc43e41be0e8dc8ad1b18f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnArea: {x: 13, y: 6, z: 0}

@@ -8,6 +8,7 @@ namespace Asteroids
         public static IEnemyFactory Factory;
         private Transform rotPool;
         private Health health;
+        [SerializeField] protected Vector3 spawnArea;
 
         public Health Health
         {
@@ -85,5 +86,7 @@ namespace Asteroids
                 Destroy(gameObject);
             }
         }
+
+        public abstract void InitPosition();
     }
 }

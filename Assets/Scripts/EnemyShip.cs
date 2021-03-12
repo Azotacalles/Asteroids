@@ -18,7 +18,14 @@ namespace Asteroids
             Vector3 move = Vector3.zero;
             var speedTemp = deltaTime * speed;
             move.Set(horizontal * speedTemp, vertical * speedTemp, 0.0f);
-            transform.localPosition += move;
+            transform.localPosition -= move;
+        }
+
+        public override void InitPosition()
+        {
+            transform.position = new Vector3(Random.Range(-spawnArea.x, spawnArea.x),
+                spawnArea.y, spawnArea.z);
+            transform.rotation = Quaternion.identity;
         }
     }
 }

@@ -2,24 +2,21 @@
 
 namespace Asteroids
 {
-    internal sealed class Bullet : ICreate
+    internal sealed class Bullet : MonoBehaviour
     {
         private Transform barrel;
         private float force = 500;
-        private Rigidbody2D bullet;
+        [SerializeField] private Rigidbody2D rb;
 
-        public Bullet(Transform barrel, Rigidbody2D bullet)
-        {
-            this.barrel = barrel;
-            this.bullet = bullet;
+        public Transform Barell
+        { 
+            get => barrel;
+            set => barrel = value;
         }
 
-        public void CreateObject()
+        private void Update()
         {
-            var temAmmunition = Object.Instantiate(bullet, barrel.position, barrel.rotation);
-            temAmmunition.AddForce(barrel.up * force);
+            rb.AddForce(barrel.up * force);
         }
-
-        
     }
 }
