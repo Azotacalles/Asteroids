@@ -96,3 +96,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnArea: {x: 10, y: 6, z: 0}
+  barrel: {fileID: 0}

@@ -1,12 +1,17 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Asteroids
 {
     internal sealed class EnemyShip : Enemy, IMove
     {
         private float speed = 1;
-
         public float Speed { get; }
+
+        private void Start()
+        {
+            StartCoroutine(Shoot());
+        }
 
         private void Update()
         {
@@ -26,6 +31,16 @@ namespace Asteroids
             transform.position = new Vector3(Random.Range(-spawnArea.x, spawnArea.x),
                 spawnArea.y, spawnArea.z);
             transform.rotation = Quaternion.identity;
+        }
+
+        IEnumerator Shoot()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(1);
+                IBulletFactory bullet = new EnemySimpleBulletFactory();
+                bullet.Create(transform);
+            }
         }
     }
 }

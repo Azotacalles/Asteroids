@@ -7,7 +7,6 @@ namespace Asteroids
         [SerializeField] private float speed;
         [SerializeField] private float acceleration;
         [SerializeField] private float hp;
-        //[SerializeField] private Rigidbody2D bullet;
         [SerializeField] private Transform barrel;
         private Ship ship;
         private InputController inputController;
@@ -23,7 +22,7 @@ namespace Asteroids
             var moveTransform = new AccelerationMove(transform, speed, acceleration);
             var rotation = new RotationShip(transform);
             ship = new Ship(moveTransform, rotation);
-            inputController = new InputController(ship, barrel);//, bullet);
+            inputController = new InputController(ship, barrel);
         }
 
         private void Update()
@@ -33,8 +32,8 @@ namespace Asteroids
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            StatePlayer statePlayer = new StatePlayer();
-            statePlayer.ChangeHP(collision, ref hp);
+            ChangePlayerProperty.MinusHP(this);
+            Destroy(collision.gameObject);
         }
     }
 }
