@@ -11,7 +11,7 @@ namespace Asteroids
         [SerializeField] private Transform barrel;
         private Ship ship;
         private InputController inputController;
-        private Action action;
+        private Action changeProperty;
         public float HP
         {
             get { return hp; }
@@ -24,7 +24,7 @@ namespace Asteroids
             var rotation = new RotationShip(transform);
             ship = new Ship(moveTransform, rotation);
             inputController = new InputController(ship, barrel);
-            action += new ChangePlayerProperty().MinusHP;
+            changeProperty += new ChangePlayerProperty().MinusHP;
         }
 
         private void Update()
@@ -34,7 +34,7 @@ namespace Asteroids
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            action(this);
+            changeProperty(this);
             Destroy(collision.gameObject);
         }
     }
