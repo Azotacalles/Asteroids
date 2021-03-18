@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Asteroids
 {
+    delegate void Action(Player player);
     internal sealed class Player : MonoBehaviour
     {
         [SerializeField] private float speed;
@@ -10,7 +11,7 @@ namespace Asteroids
         [SerializeField] private Transform barrel;
         private Ship ship;
         private InputController inputController;
-
+        private Action action;
         public float HP
         {
             get { return hp; }
@@ -23,6 +24,7 @@ namespace Asteroids
             var rotation = new RotationShip(transform);
             ship = new Ship(moveTransform, rotation);
             inputController = new InputController(ship, barrel);
+            action += new ChangePlayerProperty().MinusHP;
         }
 
         private void Update()
@@ -32,7 +34,7 @@ namespace Asteroids
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            ChangePlayerProperty.MinusHP(this);
+            action(this);
             Destroy(collision.gameObject);
         }
     }
