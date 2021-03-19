@@ -5,12 +5,12 @@ namespace Asteroids
 {
     internal sealed class EnemyShip : Enemy, IMove
     {
-        private float speed = 1;
+        [SerializeField] private float speed = 1;
         public float Speed { get; }
 
         private void Start()
         {
-            StartCoroutine(Shoot());
+            //StartCoroutine(Shoot());
         }
 
         private void Update()
@@ -26,13 +26,6 @@ namespace Asteroids
             transform.localPosition -= move;
         }
 
-        public override void InitPosition()
-        {
-            transform.position = new Vector3(Random.Range(-spawnArea.x, spawnArea.x),
-                spawnArea.y, spawnArea.z);
-            transform.rotation = Quaternion.identity;
-        }
-
         IEnumerator Shoot()
         {
             while (true)
@@ -42,5 +35,14 @@ namespace Asteroids
                 bullet.Create(transform);
             }
         }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            this.Clone(new EnemyShipFactory());
+            Debug.Log("1111");
+            Destroy(gameObject);
+        }
+
+
     }
 }

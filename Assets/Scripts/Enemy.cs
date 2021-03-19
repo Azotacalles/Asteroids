@@ -3,7 +3,7 @@ using Asteroids.ObjectPool;
 
 namespace Asteroids
 {
-    internal abstract class Enemy : MonoBehaviour
+    internal abstract class Enemy : MonoBehaviour, IPrototype
     {
         public static IEnemyFactory Factory;
         private Transform rotPool;
@@ -87,11 +87,18 @@ namespace Asteroids
             }
         }
 
-        public abstract void InitPosition();
-
-        private void OnCollisionExit2D(Collision2D collision)
+        public virtual void InitPosition()
         {
-            Destroy(gameObject);
+            transform.position = new Vector3(Random.Range(-spawnArea.x, spawnArea.x),
+                Random.Range(spawnArea.y - 2, spawnArea.y + 2), spawnArea.z);
+            transform.rotation = Quaternion.identity;
+        }
+
+        public IPrototype Clone(IEnemyFactory enemyFactory)
+        {
+            IEnemyFactory enemyShip = enemyFactory;
+            Enemy enemy = enemyShip.Create(new Health(100, 100));
+            return enemy;
         }
     }
 }

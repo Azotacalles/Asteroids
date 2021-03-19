@@ -8,7 +8,7 @@ namespace Asteroids
         {
             var enemy = Object.Instantiate(Resources.Load<EnemyShip>("Enemy/EnemyShip"));
             enemy.DependencyInjectHealth(hp);
-            (enemy as EnemyShip).InitPosition();
+            enemy.InitPosition();
             return enemy;
         }
     }

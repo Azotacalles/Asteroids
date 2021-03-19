@@ -4,7 +4,7 @@ namespace Asteroids
 {
     internal sealed class Asteroid : Enemy, IRotation, IMove
     {
-        private float speed = 2;
+        [SerializeField] private float speed = 2;
         public float Speed { get; }
         public override void InitPosition()
         {
@@ -30,6 +30,12 @@ namespace Asteroids
             var speedTemp = deltaTime * speed;
             move.Set(horizontal * speedTemp, vertical * speedTemp, 0.0f);
             transform.localPosition -= move;
+        }
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            this.Clone(new AsteroidFactory());
+            Debug.Log("2222");
+            Destroy(gameObject);
         }
     }
 }

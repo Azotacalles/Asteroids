@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1416041451472221548}
   - component: {fileID: 2383833180621841026}
   - component: {fileID: -5324583469276486309}
+  - component: {fileID: 3344629638044446530}
   m_Layer: 0
   m_Name: Asteroid
   m_TagString: Untagged
@@ -95,4 +96,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a5247f678fc43e41be0e8dc8ad1b18f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnArea: {x: 13, y: 6, z: 0}
+  spawnArea: {x: 13, y: 8, z: 0}
+  speed: 1
+--- !u!61 &3344629638044446530
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7816978341626074635}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.45, y: 0.45}
+    newSize: {x: 0.45, y: 0.45}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.45, y: 0.45}
+  m_EdgeRadius: 0
